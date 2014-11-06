@@ -1,0 +1,89 @@
+[
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "frank", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2012-04-21T12:03:48.783", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "pbkdf2_sha256$10000$JfEKewjP2qt9$/AkikFcmVRSGTuwS82UCadK0k8ejGs0/rz+JEHZ+LCE=", 
+      "email": "frank@revsys.com", 
+      "date_joined": "2012-04-21T12:03:48.783"
+    }
+  },
+  {
+    "pk": 1, 
+    "model": "fack.topic", 
+    "fields": {
+      "sort_order": 0, 
+      "name": "Silly questions", 
+      "slug": "silly-questions"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "fack.topic", 
+    "fields": {
+      "sort_order": 1, 
+      "name": "Serious questions", 
+      "slug": "serious-questions"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "fack.question", 
+    "fields": {
+      "status": 1, 
+      "updated_by": 1, 
+      "text": "What is your favorite color?", 
+      "created_by": 1, 
+      "topic": 1, 
+      "created_on": "2011-05-09 15:38:47", 
+      "sort_order": 0, 
+      "answer": "Red... no blue.. no *AHHHHH....*", 
+      "updated_on": "2011-05-09 15:38:47", 
+      "protected": false, 
+      "slug": "favorite-color"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "fack.question", 
+    "fields": {
+      "status": 1, 
+      "updated_by": 1, 
+      "text": "What is your quest?", 
+      "created_by": 1, 
+      "topic": 1, 
+      "created_on": "2011-05-09 15:39:19", 
+      "sort_order": 1, 
+      "answer": "I seek the grail!", 
+      "updated_on": "2011-05-09 15:39:19", 
+      "protected": false, 
+      "slug": "your-quest"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "fack.question", 
+    "fields": {
+      "status": 1, 
+      "updated_by": 1, 
+      "text": "What is Django-fack?", 
+      "created_by": 1, 
+      "topic": 2, 
+      "created_on": "2011-05-09 15:40:55", 
+      "sort_order": 3, 
+      "answer": "A simple FAQ application for a Django powered site. This app follows\r\nseveral \"best practices\" for reusable apps by allowing for template overrides\r\nand extra_context arguments and such.\r\n", 
+      "updated_on": "2011-05-09 15:40:55", 
+      "protected": false, 
+      "slug": "what-is-django-fack"
+    }
+  }
+]

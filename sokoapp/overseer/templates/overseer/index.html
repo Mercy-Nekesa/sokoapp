@@ -1,0 +1,61 @@
+{% extends "overseer/base.html" %}
+
+{% load overseer_helpers %}
+
+{% block content %}
+    {% if latest_event %}
+        <div class="latest-event event status-{{ latest_event.status }}">
+            <h3>Latest Event</h3>
+            <p><a href="{% url overseer:event latest_event.pk %}">{{ latest_event.get_message }}</a></p>
+            <time>{{ latest_event.date_updated|timesince }}{% if not latest_event.status %} (lasted {{ latest_event.get_duration|duration }}){% endif %}</time>
+            <span class="affects">affects {% for slug, name in latest_event.get_services %}<a href="{% url overseer:service slug %}">{{ name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+        </div>
+    {% endif %}
+
+    <div class="service-list">
+        <table>
+            <thead>
+                <tr>
+                    <th class="status">Status</th>
+                    <th class="service">Service</th>
+                    <th class="last-event">Last Event</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in service_list %}
+                    <tr>
+                        <td class="status status-{{ service.status }}">{{ service.get_status_display }}</td>
+                        <td class="service">
+                            <h2><a href="{% url overseer:service service.slug %}">{{ service.name }}</a></h2>
+                            {% if service.description %}
+                                <p>{{ service.description }}</p>
+                            {% endif %}
+                        </td>
+                        <td class="last-event">
+                            {% if service.date_updated != service.date_created %}
+                                <a href="{% url overseer:last_event service.slug %}">{{ service.date_updated|timesince }}</a>
+                            {% else %}
+                                <em>n/a</em>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if event_list %}
+        <div class="event-list">
+            <h3>Recent Events</h3>
+            <ul>
+                {% for event in event_list %}
+                    <li class="event status-{{ event.status }}">
+                        <p><a href="{% url overseer:event event.pk %}">{{ event.get_message }}</a></p>
+                        <time>{{ event.date_updated|timesince }}{% if not event.status %} (lasted {{ event.get_duration|duration }}){% endif %}</time>
+                        <span class="affects">affects {% for slug, name in event.get_services %}<a href="{% url overseer:service slug %}">{{ name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
